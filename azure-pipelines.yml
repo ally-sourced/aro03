@@ -11,18 +11,28 @@ pool:
 
 steps:
 - task: oc-cmd@2
+  displayName: Creating New App
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'openshift-service-connection'
     #cmd: 'oc start-build nodejs-ex --follow'
     cmd: 'oc new-app https://github.com/ally-sourced/aro03 -l name=opticca-demo'
+
 - task: oc-cmd@2
+  displayName: Getting App Status
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'openshift-service-connection'
-    cmd: 'oc start-build nodejs-ex --follow'    
-- task: oc-cmd@2
-  inputs:
-    connectionType: 'OpenShift Connection Service'
-    openshiftService: 'openshift-service-connection'
-    cmd: 'oc status'
+    #cmd: 'oc start-build nodejs-ex --follow'
+    cmd: 'oc status --suggest'
+
+#- task: oc-cmd@2
+#  inputs:
+#    connectionType: 'OpenShift Connection Service'
+#    openshiftService: 'openshift-service-connection'
+#    cmd: 'oc start-build nodejs-ex --follow'    
+#- task: oc-cmd@2
+#  inputs:
+#    connectionType: 'OpenShift Connection Service'
+#    openshiftService: 'openshift-service-connection'
+#    cmd: 'oc status'
