@@ -1,8 +1,3 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
 - master
 
@@ -17,6 +12,22 @@ steps:
     openshiftService: 'openshift-service-connection'
     #cmd: 'oc start-build nodejs-ex --follow'
     cmd: 'oc new-app https://github.com/ally-sourced/aro03 -l name=opticca-demo'
+
+- task: oc-cmd@2
+  displayName: Expose App
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'openshift-service-connection'
+    #cmd: 'oc start-build nodejs-ex --follow'
+    cmd: 'oc expose svc/aro03'
+
+- task: oc-cmd@2
+  displayName: Getting App Route
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'openshift-service-connection'
+    #cmd: 'oc start-build nodejs-ex --follow'
+    cmd: 'oc get route/aro03'
 
 - task: oc-cmd@2
   displayName: Getting App Status
