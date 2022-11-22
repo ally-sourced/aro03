@@ -13,16 +13,16 @@ steps:
 - task: oc-cmd@2
   inputs:
     connectionType: 'OpenShift Connection Service'
-    openshiftService: 'os-conn'
+    openshiftService: 'openshift-service-connection'
     #cmd: 'oc start-build nodejs-ex --follow'
-    cmd: 'oc new-app https://github.com/rcarneironet/nodejs-ex -l name=vssummit-app'
+    cmd: 'oc new-app https://github.com/ally-sourced/aro03 -l name=opticca-demo'
 - task: oc-cmd@2
   inputs:
     connectionType: 'OpenShift Connection Service'
-    openshiftService: 'os-conn'
+    openshiftService: 'openshift-service-connection'
     cmd: 'oc start-build nodejs-ex --follow'    
 - task: oc-cmd@2
   inputs:
     connectionType: 'OpenShift Connection Service'
-    openshiftService: 'os-conn'
+    openshiftService: 'openshift-service-connection'
     cmd: 'oc status'
