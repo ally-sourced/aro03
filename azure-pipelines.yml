@@ -5,6 +5,15 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+
+- task: oc-cmd@2
+  displayName: Selecting Project Opticca-dev
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'openshift-service-connection'
+    #cmd: 'oc start-build nodejs-ex --follow'
+    cmd: 'oc project opticca-dev'
+
 - task: oc-cmd@2
   displayName: Creating New App
   inputs:
